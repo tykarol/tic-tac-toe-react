@@ -34,10 +34,6 @@ let webpackConfig = {
                 query: config.get('babel_options')
             },
             {
-                test: /\.css$/,
-                loader: ExtractTextPlugin.extract('style-loader', ['css-loader'])
-            },
-            {
                 test: /\.(jpg|jpeg|png|gif)$/,
                 loader: 'file-loader?name=images/[hash:base64:8].[ext]'
             }
@@ -52,13 +48,9 @@ let webpackConfig = {
         new CleanPlugin([
             paths.dist('images'),
             paths.dist('scripts'),
-            paths.dist('styles'),
             paths.dist('index.html')
         ]),
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new ExtractTextPlugin('styles/[name].css', {
-            disable: config.get('env') !== 'production'
-        })
+        new webpack.optimize.OccurenceOrderPlugin()
     ]
 };
 
