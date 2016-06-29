@@ -2,19 +2,19 @@ export const GAME_WIN_X = 'GAME_WIN_X';
 export const GAME_WIN_O = 'GAME_WIN_O';
 export const GAME_TIES = 'GAME_TIES';
 
-function gameWinPlayerX() {
+export function gameWinPlayerX() {
     return {
         type: GAME_WIN_X
     };
 }
 
-function gameWinPlayerO() {
+export function gameWinPlayerO() {
     return {
         type: GAME_WIN_O
     };
 }
 
-function gameTies() {
+export function gameTies() {
     return {
         type: GAME_TIES
     };
@@ -23,14 +23,14 @@ function gameTies() {
 export const SET_PLAYER = 'SET_PLAYER';
 export const CLEAR_PLAYER = 'CLEAR_PLAYER';
 
-function setPlayer(player) {
+export function setPlayer(player) {
     return {
         type: SET_PLAYER,
         player 
     }
 }
 
-function clearPlayer() {
+export function clearPlayer() {
     return {
         type: CLEAR_PLAYER
     }
@@ -39,7 +39,7 @@ function clearPlayer() {
 export const SET_BOARD = 'SET_BOARD';
 export const CLEAR_BOARD = 'CLEAR_BOARD';
 
-function setBoard(player, index) {
+export function setBoard(player, index) {
     return {
         type: SET_BOARD,
         player,
@@ -47,7 +47,7 @@ function setBoard(player, index) {
     }
 }
 
-function clearBoard() {
+export function clearBoard() {
     return {
         type: CLEAR_BOARD
     }

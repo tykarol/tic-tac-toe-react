@@ -48,7 +48,7 @@ function score(state = initialState.score, action) {
 }
 
 function board(state = initialState.board, action) {
-    switch (sction.type) {
+    switch (action.type) {
         case CLEAR_BOARD: {
             return initialState.board;
         }
