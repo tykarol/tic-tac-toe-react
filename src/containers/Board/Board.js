@@ -9,8 +9,8 @@ const styles = {
         display: 'flex',
         flexWrap: 'wrap',
         width: '300px',
-        margin: '0',
-        padding: '0',
+        margin: 0,
+        padding: 0,
         boxSizing: 'content-box',
         borderTop: '1px solid #ddd',
         borderLeft: '1px solid #ddd'
@@ -19,8 +19,8 @@ const styles = {
         flex: '0 1 100px',
         height: '100px',
         listStyle: 'none',
-        margin: '0',
-        padding: '0',
+        margin: 0,
+        padding: 0,
         boxSizing: 'border-box',
         borderBottom: '1px solid #ddd',
         borderRight: '1px solid #ddd',
@@ -40,21 +40,21 @@ class Board extends Component {
         setPlayer: PropTypes.func.isRequired,
         game: PropTypes.object.isRequired
     };
-
-    // constructor(props) {
-    //     super(props);
-    // }
     
+    componentDidMount() {
+        const players = ['x', 'o'];
+        const index = Math.floor( Math.random()*100 ) % 2;
+        const player = players[index];
+
+        this.props.setPlayer(player);
+    }
+
     getPlayer() {
         const players = ['x', 'o'];
         const player = this.props.game.player;
+        const index = (players.indexOf(player) + 1) % 2;
 
-        if (!player) {
-            return players[0];
-        } else {
-            const index = players.indexOf(player);
-            return players[(index + 1) % 2];
-        }
+        return players[index];
     }
 
     onItemClick(index) {
@@ -62,27 +62,27 @@ class Board extends Component {
             return;
         }
 
-        const player = this.getPlayer();
-        this.props.setPlayer(player);
+        const player = this.props.game.player;
+
         this.props.setBoard(player, index);
+        this.props.setPlayer(this.getPlayer());
     }
 
     render() {
         const { game } = this.props;
 
         return (
-            <div>
-                Board
-                <ul style={styles.list}>
+            <ul style={styles.list}>
                 {game.board.map((item, index) => {
                     const itemStyles = {
                         ...styles.item,
                         cursor: (item === null) ? 'pointer' : 'default'
                     };
-                    return (<li key={index} onClick={this.onItemClick.bind(this, index)} style={itemStyles}>{item}</li>);
+                    const onItemClick = (item === null) ? this.onItemClick.bind(this, index) : '';
+
+                    return (<li key={index} onClick={onItemClick} style={itemStyles}>{item}</li>);
                 })}
-                </ul>
-            </div>
+            </ul>
             );
     }
 }

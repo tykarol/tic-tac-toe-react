@@ -11,16 +11,26 @@ const styles = {
 
 class App extends Component {
     render() {
+        const { game } = this.props;
+        const { score } = game;
+
         return (
             <div style={styles.wrapper}>
                 <Board />
+                <div>
+                    <div>Player (x): {score.x}</div>
+                    <div>Ties: {score.ties}</div>
+                    <div>Computer (o): {score.o}</div>
+                </div>
             </div>
         );
     }
 }
 
 function mapStateToProps(state) {
-    return {};
+    return {
+        game: state.game
+    };
 }
 
 export default connect(
