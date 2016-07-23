@@ -11,7 +11,8 @@
     ],
     "rules": {
         "indent": [2, 4, {"SwitchCase": 1}],
-        "comma-dangle": 0
+        "comma-dangle": 0,
+        "react/jsx-indent-props": [2, 4]
     },
     "globals": {
         "__DEV__": true,

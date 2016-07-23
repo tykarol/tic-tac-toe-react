@@ -1,3 +1,6 @@
+export const PLAYER_EMPTY_VALUE = null;
+export const BOARD_EMPTY_VALUE = null;
+
 export const GAME_WIN_X = 'GAME_WIN_X';
 export const GAME_WIN_O = 'GAME_WIN_O';
 export const GAME_TIES = 'GAME_TIES';
@@ -17,6 +20,14 @@ export function gameWinPlayerO() {
 export function gameTies() {
     return {
         type: GAME_TIES
+    };
+}
+
+export const CLEAR_SCORES = 'CLEAR_SCORES';
+
+export function clearScores() {
+    return {
+        type: CLEAR_SCORES
     };
 }
 

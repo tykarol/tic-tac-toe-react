@@ -1,7 +1,10 @@
 import {
+    BOARD_EMPTY_VALUE,
+    PLAYER_EMPTY_VALUE,
     GAME_WIN_X,
     GAME_WIN_O,
     GAME_TIES,
+    CLEAR_SCORES,
     SET_PLAYER,
     CLEAR_PLAYER,
     CLEAR_BOARD,
@@ -11,7 +14,7 @@ import {
 } from 'actions/game';
 
 const initialState = {
-    player: null,
+    player: PLAYER_EMPTY_VALUE,
     score: {
         x: 0,
         o: 0,
@@ -19,9 +22,9 @@ const initialState = {
     },
     boardBlocked: true,
     board: [
-        null, null, null,
-        null, null, null,
-        null, null, null
+        BOARD_EMPTY_VALUE, BOARD_EMPTY_VALUE, BOARD_EMPTY_VALUE,
+        BOARD_EMPTY_VALUE, BOARD_EMPTY_VALUE, BOARD_EMPTY_VALUE,
+        BOARD_EMPTY_VALUE, BOARD_EMPTY_VALUE, BOARD_EMPTY_VALUE
     ]
 };
 
@@ -44,6 +47,9 @@ function score(state = initialState.score, action) {
                 ...state,
                 ties: state.ties + 1
             };
+        }
+        case CLEAR_SCORES: {
+            return initialState.score;
         }
         default:
             return state;
