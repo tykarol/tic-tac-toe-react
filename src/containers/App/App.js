@@ -10,6 +10,10 @@ const styles = {
 };
 
 class App extends Component {
+    static propTypes = {
+        game: PropTypes.object.isRequired
+    };
+
     render() {
         const { game } = this.props;
         const { score } = game;

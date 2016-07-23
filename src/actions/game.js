@@ -26,14 +26,14 @@ export const CLEAR_PLAYER = 'CLEAR_PLAYER';
 export function setPlayer(player) {
     return {
         type: SET_PLAYER,
-        player 
-    }
+        player
+    };
 }
 
 export function clearPlayer() {
     return {
         type: CLEAR_PLAYER
-    }
+    };
 }
 
 export const SET_BOARD = 'SET_BOARD';
@@ -44,11 +44,26 @@ export function setBoard(player, index) {
         type: SET_BOARD,
         player,
         index
-    }
+    };
 }
 
 export function clearBoard() {
     return {
         type: CLEAR_BOARD
-    }
+    };
+}
+
+export const BLOCK_BOARD = 'BLOCK_BOARD';
+export const UNBLOCK_BOARD = 'UNBLOCK_BOARD';
+
+export function blockBoard() {
+    return {
+        type: BLOCK_BOARD
+    };
+}
+
+export function unblockBoard() {
+    return {
+        type: UNBLOCK_BOARD
+    };
 }

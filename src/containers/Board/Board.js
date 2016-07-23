@@ -40,21 +40,13 @@ class Board extends Component {
         setPlayer: PropTypes.func.isRequired,
         game: PropTypes.object.isRequired
     };
-    
+
     componentDidMount() {
         const players = ['x', 'o'];
-        const index = Math.floor( Math.random()*100 ) % 2;
+        const index = Math.floor(Math.random() * 100) % 2;
         const player = players[index];
 
         this.props.setPlayer(player);
-    }
-
-    getPlayer() {
-        const players = ['x', 'o'];
-        const player = this.props.game.player;
-        const index = (players.indexOf(player) + 1) % 2;
-
-        return players[index];
     }
 
     onItemClick(index) {
@@ -66,6 +58,14 @@ class Board extends Component {
 
         this.props.setBoard(player, index);
         this.props.setPlayer(this.getPlayer());
+    }
+
+    getPlayer() {
+        const players = ['x', 'o'];
+        const player = this.props.game.player;
+        const index = (players.indexOf(player) + 1) % 2;
+
+        return players[index];
     }
 
     render() {

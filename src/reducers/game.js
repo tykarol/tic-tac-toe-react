@@ -5,7 +5,9 @@ import {
     SET_PLAYER,
     CLEAR_PLAYER,
     CLEAR_BOARD,
-    SET_BOARD
+    SET_BOARD,
+    BLOCK_BOARD,
+    UNBLOCK_BOARD
 } from 'actions/game';
 
 const initialState = {
@@ -15,6 +17,7 @@ const initialState = {
         o: 0,
         ties: 0
     },
+    boardBlocked: true,
     board: [
         null, null, null,
         null, null, null,
@@ -27,19 +30,19 @@ function score(state = initialState.score, action) {
         case GAME_WIN_X: {
             return {
                 ...state,
-                x: state.x++
+                x: state.x + 1
             };
         }
         case GAME_WIN_O: {
             return {
                 ...state,
-                o: state.o++
+                o: state.o + 1
             };
         }
         case GAME_TIES: {
             return {
                 ...state,
-                ties: state.ties++
+                ties: state.ties + 1
             };
         }
         default:
@@ -76,6 +79,18 @@ function game(state = initialState, action) {
             return {
                 ...state,
                 player: initialState.player
+            };
+        }
+        case BLOCK_BOARD: {
+            return {
+                ...state,
+                boardBlocked: true
+            };
+        }
+        case UNBLOCK_BOARD: {
+            return {
+                ...state,
+                boardBlocked: false
             };
         }
         default:
