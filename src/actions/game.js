@@ -1,19 +1,13 @@
 export const PLAYER_EMPTY_VALUE = null;
 export const BOARD_EMPTY_VALUE = null;
 
-export const GAME_WIN_X = 'GAME_WIN_X';
-export const GAME_WIN_O = 'GAME_WIN_O';
+export const GAME_WIN = 'GAME_WIN';
 export const GAME_TIES = 'GAME_TIES';
 
-export function gameWinPlayerX() {
+export function gameWinPlayer(player) {
     return {
-        type: GAME_WIN_X
-    };
-}
-
-export function gameWinPlayerO() {
-    return {
-        type: GAME_WIN_O
+        type: GAME_WIN,
+        player
     };
 }
 

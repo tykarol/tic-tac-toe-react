@@ -1,8 +1,7 @@
 import {
     BOARD_EMPTY_VALUE,
     PLAYER_EMPTY_VALUE,
-    GAME_WIN_X,
-    GAME_WIN_O,
+    GAME_WIN,
     GAME_TIES,
     CLEAR_SCORES,
     SET_PLAYER,
@@ -15,6 +14,10 @@ import {
 
 const initialState = {
     player: PLAYER_EMPTY_VALUE,
+    names: {
+        x: 'Player',
+        o: 'Computer'
+    },
     score: {
         x: 0,
         o: 0,
@@ -30,16 +33,10 @@ const initialState = {
 
 function score(state = initialState.score, action) {
     switch (action.type) {
-        case GAME_WIN_X: {
+        case GAME_WIN: {
             return {
                 ...state,
-                x: state.x + 1
-            };
-        }
-        case GAME_WIN_O: {
-            return {
-                ...state,
-                o: state.o + 1
+                [action.player]: state[action.player] + 1
             };
         }
         case GAME_TIES: {
@@ -49,7 +46,9 @@ function score(state = initialState.score, action) {
             };
         }
         case CLEAR_SCORES: {
-            return initialState.score;
+            return {
+                ...initialState.score
+            };
         }
         default:
             return state;
@@ -59,7 +58,9 @@ function score(state = initialState.score, action) {
 function board(state = initialState.board, action) {
     switch (action.type) {
         case CLEAR_BOARD: {
-            return initialState.board;
+            return [
+                ...initialState.board
+            ];
         }
         case SET_BOARD: {
             return [
@@ -99,11 +100,29 @@ function game(state = initialState, action) {
                 boardBlocked: false
             };
         }
+        case CLEAR_BOARD: {
+            return {
+                ...state,
+                board: [
+                    ...initialState.board
+                ]
+            };
+        }
+        case SET_BOARD: {
+            return {
+                ...state,
+                board: [
+                    ...state.board.slice(0, action.index),
+                    action.player,
+                    ...state.board.slice(action.index + 1)
+                ]
+            };
+        }
         default:
             return {
                 ...state,
-                board: board(state.board, action),
-                score: score(state.stats, action)
+                // board: board(state.board, action),
+                score: score(state.score, action)
             };
     }
 }
